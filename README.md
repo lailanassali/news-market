@@ -49,6 +49,17 @@ yarn android
 
 For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
 
+> **Note:** iOS bundle requires Ruby 3.2.0+. If version is below, install via rbenv if needed:
+> ```
+> ruby -v # check version that you are using
+> brew install rbenv
+> rbenv install 3.2.0
+> rbenv global 3.2.0
+> echo 'eval "$(rbenv init -)"' >> ~/.zshrc
+> source ~/.zshrc
+> ruby -v  # verify version
+> ```
+
 The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
 
 ```sh
@@ -97,6 +108,8 @@ flowchart TD
     D --> C
 ```
 
+This is the System Diagram designed before implementation for a high-level approach of the solution. 
+
 - **UI Layer** - This includes all the components and screens of the app.
 - **State / Context** - This manages the global state of the app, includes fetching articles and selecting domains.
 - **Service Layer** - This includes the News Service where the data is being fetched from the Data Layer.
@@ -111,12 +124,23 @@ news-market/
 └── NewsMarket/
     ├── __tests__/        # unit tests
     ├── components/       # reusable UI components
+    ├── constants/        # hardcoded app constants e.g. domains
     ├── context/          # Context API state management
     ├── hooks/            # custom React hooks
     ├── screens/          # app screens
     ├── services/         # News API service
     └── types/            # TypeScript type definitions
 ```
+
+This is the file structure for the project setup which includes the UI, Context management, Hooks, Services, Type Definitions and Constants for a clean structure for any developer to use.
+
+# Assumptions & Trade-offs
+
+- **NewsAPI Free Tier** - The free tier for the NewsAPI is limited to 100 requests per day. If for any reason, there are no articles showing, it may have reached the daily limit. Please try again the following day. 
+- **Type Definitions** - The Article Type Definition is nullable for `source.id` and `description` after doing some research on the News API website and testing on Postman. Using `string | null` type to handle nullable API responses. 
+- **Libraries used** 
+- Using `react-native-dotenv` for environment variables for a cleaner approach. 
+- Ruby versioning requires `3.2.0` for iOS bundle installs
 
 # Troubleshooting
 
