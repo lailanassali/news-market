@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { Article } from "../types/type";
 import { fetchNewsArticles } from "../services/newsService";
 
@@ -13,6 +13,16 @@ export const ArticleProvider  = ({ children }: { children: React.ReactNode }) =>
 
     const [articles, setArticles] = useState<Article[]>([]);
     const [selectedDomains, setSelectedDomains] = useState<string[]>([]);
+
+    useEffect(() => {
+        if (selectedDomains.length === 0) {
+            setArticles([]);
+            return;
+        }
+        fetchNewsArticles(selectedDomains).then(fetchedArticles => {
+            setArticles(fetchedArticles);
+        });
+    }, [selectedDomains]);
 
     return (
         <ArticleContext.Provider value={
