@@ -34,7 +34,7 @@ export const HomeScreen = () => {
                 <Text style={styles.subheadingText}>Latest articles</Text>
                     <FlatList
                         data={articles} 
-                        keyExtractor={(item) => item.source.id || item.title} 
+                        keyExtractor={(item) => item.url} 
                         renderItem={({ item }) => (
                             <ArticleCard source={item.source} title={item.title} description={item.description} publishedAt={item.publishedAt} content={item.content} />
                         )}
