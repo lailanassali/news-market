@@ -21,8 +21,9 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ source, title, descrip
                 </View>
                 <Text style={styles.timeText}>{new Date(publishedAt).toLocaleDateString()}</Text>
             </View>
-            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.title} numberOfLines={2}>{title}</Text>
             <Text style={styles.description} numberOfLines={2}>{description ?? 'No description available'}</Text>
+            <Text style={styles.content} numberOfLines={3}>{content}</Text>
         </View>
     );
 }
@@ -56,12 +57,18 @@ const styles = StyleSheet.create({
         fontSize: 11,
     },
     title: {
-        color: '#000',
+        color: '#185FA5',
         fontSize: 14,
         fontWeight: '500',
         marginBottom: 4,
     },
     description: {
+        color: '#000',
+        fontSize: 12,
+        lineHeight: 18,
+    },
+    content: {
+        marginTop: 4,
         color: '#000',
         fontSize: 12,
         lineHeight: 18,
