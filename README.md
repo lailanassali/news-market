@@ -97,26 +97,26 @@ flowchart TD
     D --> C
 ```
 
-UI Layer - This includes all the components and screens of the app.
-State / Context - This manages the global state of the app, includes fetching articles and selecting domains.
-Service Layer - This includes the News Service where the data is being fetched from the Data Layer.
-Types Folder -The Types includes type definitons of the app.
-Data Layer - This includes the News API where the data is being fetched externally.
+- **UI Layer** - This includes all the components and screens of the app.
+- **State / Context** - This manages the global state of the app, includes fetching articles and selecting domains.
+- **Service Layer** - This includes the News Service where the data is being fetched from the Data Layer.
+- **Types Folder** - Contains all shared type definitions used across the app.
+- **Data Layer** - This includes the News API where the data is being fetched externally.
 
 
 ## File Structure
 
-This is the file structure 
-
-/news-market
- /NewsMarket
-  /__tests__        # test files
-  /components       # reusable UI components
-  /context          # Context API state Management
-  /hooks            # custom React hooks
-  /screens          # app screens
-  /services         # News API service
-  /types            # TypeScript type definitions
+```
+news-market/
+└── NewsMarket/
+    ├── __tests__/        # unit tests
+    ├── components/       # reusable UI components
+    ├── context/          # Context API state management
+    ├── hooks/            # custom React hooks
+    ├── screens/          # app screens
+    ├── services/         # News API service
+    └── types/            # TypeScript type definitions
+```
 
 # Troubleshooting
 
