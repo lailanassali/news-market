@@ -97,16 +97,11 @@ flowchart TD
     D --> C
 ```
 
-#### UI Layer
-This includes all the components and screens of the app.
-#### State / Context
-This manages the global state of the app, includes fetching articles and selecting domains.
-#### Service Layer 
-This includes the News Service where the data is being fetched from the Data Layer.
-#### Types Folder 
-The Types includes  type definitons of the app.
-#### Data Layer
-This includes the News API where the data is being fetched externally.
+UI Layer - This includes all the components and screens of the app.
+State / Context - This manages the global state of the app, includes fetching articles and selecting domains.
+Service Layer - This includes the News Service where the data is being fetched from the Data Layer.
+Types Folder -The Types includes type definitons of the app.
+Data Layer - This includes the News API where the data is being fetched externally.
 
 
 ## File Structure
