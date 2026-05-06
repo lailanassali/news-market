@@ -4,9 +4,9 @@ import { useContext } from "react";
 import { ArticleContext } from "../context/ArticleContext";
 import { DomainPill } from "../components/DomainPill";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { ArticleCard } from "../components/ArticleCard";
 
 export const HomeScreen = () => {
-
     const { articles, selectedDomains, toggleDomain } = useContext(ArticleContext);
 
     return (
@@ -25,16 +25,22 @@ export const HomeScreen = () => {
                     style={styles.flatList}
                 />
             </View>
+            {articles.length === 0 && selectedDomains.length === 0 ? (
+                <View style={styles.noArticlesContainer}>
+                    <Text style={styles.noArticlesText}>Select a domain to read articles</Text>
+                </View>
+            ) : (
             <View style={styles.articlesContainer}>
                 <Text style={styles.subheadingText}>Latest articles</Text>
-                <FlatList
-                    data={articles} 
-                    keyExtractor={(item) => item.source.id || item.title} 
-                    renderItem={({ item }) => (
-                        <></> // article card component
-                    )}
+                    <FlatList
+                        data={articles} 
+                        keyExtractor={(item) => item.source.id || item.title} 
+                        renderItem={({ item }) => (
+                            <ArticleCard source={item.source} title={item.title} description={item.description} publishedAt={item.publishedAt} content={item.content} />
+                        )}
                     />
             </View>
+            )}
         </SafeAreaView>
     );
 }
@@ -62,5 +68,15 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 8,
         marginTop: 24,
+    },
+    noArticlesText: {
+        color: '#888',
+        fontSize: 16,
+        textAlign: 'center',
+        marginTop: 24,
+    },
+    noArticlesContainer: {
+        flex: 1,
+        justifyContent: 'center',
     },
 });
