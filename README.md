@@ -189,9 +189,9 @@ npm test
 
 All interactive components include `accessibilityRole`, `accessibilityLabel` and `accessibilityState` where appropriate to support screen readers.
 
+---
 
 # Assumptions and Trade-offs
-
 
 - **NewsAPI Free Tier** - The free tier for the NewsAPI is limited to 100 requests per day. If for any reason, there are no articles showing, it may have reached the daily limit. Please try again the following day. 
 - **Type Definitions** - The Article Type Definition is nullable for `source.id` and `description` after doing some research on the News API website and testing on Postman. Using `string | null` type to handle nullable API responses. 
