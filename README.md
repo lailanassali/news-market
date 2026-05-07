@@ -17,6 +17,9 @@ First, make sure you are in the `NewsMarket` directory that lives inside your ro
 ```sh
 # Go into NewsMarket directory from root
 cd NewsMarket
+
+# Install dependencies
+npm install
 ```
 
 You will need to run **Metro**, the JavaScript build tool for React Native.
@@ -160,6 +163,10 @@ To run the tests, make sure you are in the `NewsMarket` directory:
 # from the root folder 
 cd NewsMarket
 
+# install dependencies
+npm install
+
+# run 
 npm test
 ```
 
