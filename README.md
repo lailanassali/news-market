@@ -148,9 +148,16 @@ news-market/
 This is the file structure for the project setup which includes the UI, Context management, Hooks, Services, Type Definitions and Constants for a clean structure for any developer to use.
 
 - **Libraries used** 
-- Using `react-native-dotenv` for environment variables for a cleaner approach. 
 - Ruby versioning requires `3.2.0` for iOS bundle installs.
 - Using `@types/jest` and `@types/node` for TypeScript type definitions in tests.
+
+## State Management
+
+The State Management solution that I used for this project would be Context API because it is great for small-to-medium sized applications, it is a lot more flexible and simpler to use for what I am fetching from the News API which is to read data and do some filtering. 
+
+## Redux vs Context API vs Prop Drilling
+
+I chose Context API over Redux because I felt that it might be over-engineering to use features like reducers and actions using Redux for a smaller sized project. I preferred Context API because it provides a cleaner approach to share values down a component tree without Prop Drilling.
 
 # Testing
 
@@ -170,28 +177,41 @@ npm install
 npm test
 ```
 
-### Test Coverage
+## Test Coverage
 - **News Service** - Unit tests for `fetchNewsArticles`
 - **Article Context** - Integration tests for state management
+- **HomeScreen** - Integration tests for domain selection and article rendering
 - **DomainPill** - Component unit tests
 - **ArticleCard** - Component unit tests
+- **SortButton** - Component unit tests
+
+## Accessibility
+
+All interactive components include `accessibilityRole`, `accessibilityLabel` and `accessibilityState` where appropriate to support screen readers.
+
 
 # Assumptions and Trade-offs
+
 
 - **NewsAPI Free Tier** - The free tier for the NewsAPI is limited to 100 requests per day. If for any reason, there are no articles showing, it may have reached the daily limit. Please try again the following day. 
 - **Type Definitions** - The Article Type Definition is nullable for `source.id` and `description` after doing some research on the News API website and testing on Postman. Using `string | null` type to handle nullable API responses. 
 - **Article URL Type Definition** - Article `url` type definition is used as a unique key rather than `source.id` because more than one article can have the same source.id and url provides a unique key for each and every article even if they share the same domain so this was more suitable. This removes the bug via source.id
 - **Article Types with null values** - Articles with null descriptions is displayed as `No description available` fallback to ensure a consistent UI experience. 
-- **Article Limit** - To limit articles to 10 per request
 - **Truncation** - The description and content values have a lot of information so truncation to 3 lines helps for cleaner UX.
-- **Article Details Screen** - Add navigation from Home Screen to `Article Details` Screen to show more details of the article. This could also include ...
+- **Article Limit** - Articles are limited to 10 per request using the pageSize param as per brief requirement. 
 
-# Next Steps & Limitations
+# Known Limitations
+- **Test Warnings** - act() warnings are a known compatibility issue between `React 19 and React Testing Library`. All tests pass correctly.
+
+# Next Steps
 
 - **Read More button** - It would be useful to add a 'Read More' button on each Article Card component so that the user can be re-directed to the browser via the source URL to read more information about the article. This will also provide a clean UX on the cards.
 - **Add Domain Logo/Icons** - A nice feature would be to add article logos to Domain Pill Component for a cleaner, professional look.
 - **Pagination & Infinite Scroll** - To display more than 10 articles for a seamless UX List experience.
 - **NewsAPI Description Type Limitations** - The description type definition includes some URL values rather than normal text, this may be a data quality limitation due to the free trial tier being used.
+- **Add Caching** - Implement local caching to avoid repeated API calls when toggling sort order
+- **Navigation** - For future screens like `Article Details Screen` to show more details of the article to expand article list when truncated.
+- **Test Structure** - For a larger scale app, tests would be organised into subfolders mirroring the src structure e.g. `__tests__/components/`, `__tests__/services/`
 
 
 # Troubleshooting
