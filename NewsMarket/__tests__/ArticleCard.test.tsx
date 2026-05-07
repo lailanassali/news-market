@@ -66,7 +66,7 @@ describe('ArticleCard', () => {
                 content="Test content."
             />
         );
-        expect(getByText('Updated 1 hours ago')).toBeTruthy();
+        expect(getByText('Updated 1 hour ago')).toBeTruthy();
     });
     it("shows no description available when not provided", () => {
         const { getByText } = render(
