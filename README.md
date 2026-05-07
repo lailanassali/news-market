@@ -56,6 +56,12 @@ npm run android
 
 # OR using Yarn
 yarn android
+
+# If variables are not loading, run a clean build instead:
+
+```sh
+# Android clean and build
+npm run android:clean
 ```
 
 ### iOS
@@ -93,6 +99,13 @@ npm run ios
 
 # OR using Yarn
 yarn ios
+```
+
+# If variables are not loading, run a clean build instead:
+
+```sh
+# Android clean and build
+npm run ios:clean
 ```
 
 If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
@@ -138,8 +151,7 @@ news-market/
     ├── __tests__/        # unit tests
     ├── components/       # reusable UI components
     ├── constants/        # hardcoded app constants e.g. domains
-    ├── context/          # Context API state management
-    ├── hooks/            # custom React hooks
+    ├── context/          # Context API state management        
     ├── screens/          # app screens
     ├── services/         # News API service
     └── types/            # TypeScript type definitions
@@ -191,7 +203,7 @@ All interactive components include `accessibilityRole`, `accessibilityLabel` and
 
 ---
 
-# Assumptions and Trade-offs
+## Assumptions and Trade-offs
 
 - **NewsAPI Free Tier** - The free tier for the NewsAPI is limited to 100 requests per day. If for any reason, there are no articles showing, it may have reached the daily limit. Please try again the following day. 
 - **Type Definitions** - The Article Type Definition is nullable for `source.id` and `description` after doing some research on the News API website and testing on Postman. Using `string | null` type to handle nullable API responses. 
@@ -200,10 +212,11 @@ All interactive components include `accessibilityRole`, `accessibilityLabel` and
 - **Truncation** - The description and content values have a lot of information so truncation to 3 lines helps for cleaner UX.
 - **Article Limit** - Articles are limited to 10 per request using the pageSize param as per brief requirement. 
 
-# Known Limitations
+## Known Limitations
+
 - **Test Warnings** - act() warnings are a known compatibility issue between `React 19 and React Testing Library`. All tests pass correctly.
 
-# Next Steps
+## Next Steps
 
 - **Read More button** - It would be useful to add a 'Read More' button on each Article Card component so that the user can be re-directed to the browser via the source URL to read more information about the article. This will also provide a clean UX on the cards.
 - **Add Domain Logo/Icons** - A nice feature would be to add article logos to Domain Pill Component for a cleaner, professional look.
@@ -213,7 +226,6 @@ All interactive components include `accessibilityRole`, `accessibilityLabel` and
 - **Navigation** - For future screens like `Article Details Screen` to show more details of the article to expand article list when truncated.
 - **Test Structure** - For a larger scale app, tests would be organised into subfolders mirroring the src structure e.g. `__tests__/components/`, `__tests__/services/`
 
-
-# Troubleshooting
+## Troubleshooting
 
 If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
