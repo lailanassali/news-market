@@ -31,7 +31,17 @@ npm start
 yarn start
 ```
 
-## Step 2: Build and run your app
+## Step 2: Environment Variables
+
+Create a `.env` file inside the `NewsMarket/` directory:
+
+```sh
+NEWS_API_KEY=your_api_key_here
+```
+
+Get a free API key at [newsapi.org](https://newsapi.org/register)
+
+## Step 3: Build and run your app
 
 With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
 
@@ -136,9 +146,30 @@ This is the file structure for the project setup which includes the UI, Context 
 
 - **Libraries used** 
 - Using `react-native-dotenv` for environment variables for a cleaner approach. 
-- Ruby versioning requires `3.2.0` for iOS bundle installs
+- Ruby versioning requires `3.2.0` for iOS bundle installs.
+- Using `@types/jest` and `@types/node` for TypeScript type definitions in tests.
 
-# Assumptions & Trade-offs
+# Testing
+
+This project uses `@testing-library/react-native` for unit and integration tests.
+
+To run the tests, make sure you are in the `NewsMarket` directory:
+
+```sh
+
+# from the root folder 
+cd NewsMarket
+
+npm test
+```
+
+### Test Coverage
+- **News Service** - Unit tests for `fetchNewsArticles`
+- **Article Context** - Integration tests for state management
+- **DomainPill** - Component unit tests
+- **ArticleCard** - Component unit tests
+
+# Assumptions and Trade-offs
 
 - **NewsAPI Free Tier** - The free tier for the NewsAPI is limited to 100 requests per day. If for any reason, there are no articles showing, it may have reached the daily limit. Please try again the following day. 
 - **Type Definitions** - The Article Type Definition is nullable for `source.id` and `description` after doing some research on the News API website and testing on Postman. Using `string | null` type to handle nullable API responses. 
@@ -146,6 +177,7 @@ This is the file structure for the project setup which includes the UI, Context 
 - **Article Types with null values** - Articles with null descriptions is displayed as `No description available` fallback to ensure a consistent UI experience. 
 - **Article Limit** - To limit articles to 10 per request
 - **Truncation** - The description and content values have a lot of information so truncation to 3 lines helps for cleaner UX.
+- **Article Details Screen** - Add navigation from Home Screen to `Article Details` Screen to show more details of the article. This could also include ...
 
 # Next Steps & Limitations
 
