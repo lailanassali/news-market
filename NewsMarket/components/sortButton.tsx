@@ -14,9 +14,8 @@ export const SortButton: React.FC<SortButtonProps> = ({ sortBy, setSortBy }) => 
             accessibilityLabel={`Sort by ${sortBy === 'publishedAt' ? 'popularity' : 'latest'}`}
             accessibilityState={{ selected: false }}
         >
-            <Text style={styles.text}>
-                Sort: {sortBy === 'publishedAt' ? 'Latest' : 'Popular'}
-                 <Text style={{ fontFamily: 'System' }}> ⇅</Text>
+            <Text style={styles.text}> 
+                Sort: {sortBy === 'publishedAt' ? 'Latest' : 'Popular'} ⇅
             </Text>
         </TouchableOpacity>
     );
@@ -34,6 +33,11 @@ const styles = StyleSheet.create({
         fontSize: 12,
         color: '#333',
         fontWeight: 'bold',
-
+        fontFamily: 'System',
     },
+    icon: {
+        fontSize: 10,
+        color: '#333',
+        fontWeight: 'bold',
+    }
 });
