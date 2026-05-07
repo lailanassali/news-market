@@ -52,9 +52,22 @@ describe('ArticleCard', () => {
                 content="Test content."
             />
         );
-        expect(getByText('01/06/2024')).toBeTruthy();
+        expect(getByText('1 June 2024')).toBeTruthy();
      }
     );
+    it("renders time ago correctly", () => {
+        const recentDate = new Date(Date.now() - 3600000).toISOString(); 
+        const { getByText } = render(
+            <ArticleCard 
+                source={{ id: 'bbc', name: 'BBC' }}
+                title="Test Article"
+                description="Test description"
+                publishedAt={recentDate}
+                content="Test content."
+            />
+        );
+        expect(getByText('Updated 1 hours ago')).toBeTruthy();
+    });
     it("shows no description available when not provided", () => {
         const { getByText } = render(
             <ArticleCard 

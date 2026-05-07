@@ -1,33 +1,25 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react-native';
+import { render, fireEvent, act } from '@testing-library/react-native';
 import { HomeScreen } from '../screens/HomeScreen';
 import { ArticleProvider } from '../context/ArticleContext';
 
-describe('HomeScreen', () => {
-    beforeEach(() => {
-        global.fetch = jest.fn();
-    });
-
-    afterEach(() => {
-        jest.clearAllMocks();
-    });
-
-    const renderHomeScreen = () => render(
-        <ArticleProvider>
-            <HomeScreen />
-        </ArticleProvider>
-    );
-
-     const mockArticles = 
-     [{ 
+jest.mock('../services/newsService', () => ({
+    fetchNewsArticles: jest.fn().mockResolvedValue([{
         source: { id: 'bbc-news', name: 'BBC News' },
         title: 'Test Article',
         description: 'Test description',
         publishedAt: '2024-01-01T00:00:00Z',
         content: 'Test content',
         url: 'http://example.com',
+    }]),
+}));
 
-     }];
+describe('HomeScreen', () => {
+    const renderHomeScreen = () => render(
+        <ArticleProvider>
+            <HomeScreen />
+        </ArticleProvider>
+    );
 
     it('renders all domain pills', () => {
         const { getByText } = renderHomeScreen();
@@ -40,16 +32,13 @@ describe('HomeScreen', () => {
         const { getAllByText } = renderHomeScreen();
         expect(getAllByText('Select a domain to read articles')).toBeTruthy(); 
     });
-
-    it('shows loading when domain is selected', async () => {
-        (fetch as jest.Mock).mockResolvedValueOnce({
-            ok: true,
-            json: async () => ({ articles: mockArticles }),
-        });
-
-        const { getByText, getByTestId } = renderHomeScreen();
+    it('shows articles when domain is selected', async () => {
+    const { getByText } = renderHomeScreen();
+    
+    await act(async () => {
         fireEvent.press(getByText('youtube.com'));
-        expect(getByTestId('loading-indicator')).toBeTruthy();
     });
-   
+    
+    expect(getByText('Test Article')).toBeTruthy();
+});
 });
