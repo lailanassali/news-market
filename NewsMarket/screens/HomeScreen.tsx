@@ -13,7 +13,7 @@ export const HomeScreen = () => {
 
     if (loading) {
         return (
-            <SafeAreaView style={styles.container}>
+            <SafeAreaView style={styles.loadingContainer}>
                 <ActivityIndicator size="large" color="#185FA5" testID="loading-indicator" />
             </SafeAreaView>
         );
@@ -82,6 +82,11 @@ const styles = StyleSheet.create({
     articlesContainer: {
         flex: 1,   
         marginVertical: 24
+    },
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     headingText: {
         fontSize: 24,
