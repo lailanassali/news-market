@@ -104,7 +104,7 @@ yarn ios
 # If variables are not loading, run a clean build instead:
 
 ```sh
-# Android clean and build
+# iOS clean and build
 npm run ios:clean
 ```
 
@@ -160,6 +160,7 @@ news-market/
 This is the file structure for the project setup which includes the UI, Context management, Hooks, Services, Type Definitions and Constants for a clean structure for any developer to use.
 
 - **Libraries used** 
+- **react-native-config** — loads environment variables (API key) from `.env` into the app at build time for Android and iOS
 - Ruby versioning requires `3.2.0` for iOS bundle installs.
 - Using `@types/jest` and `@types/node` for TypeScript type definitions in tests.
 
