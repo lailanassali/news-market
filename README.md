@@ -79,16 +79,16 @@ For iOS, remember to install CocoaPods dependencies (this only needs to be run o
 > ruby -v  # verify version
 > ```
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+The first time you clone this project, run the Ruby bundler to install CocoaPods itself:
 
 ```sh
 bundle install
 ```
 
-Then, and every time you update your native dependencies, run:
+Then install to update your iOS native dependencies, run:
 
 ```sh
-bundle exec pod install
+npm run ios:pods
 ```
 
 For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
