@@ -14,7 +14,7 @@ export const HomeScreen = () => {
     if (loading) {
         return (
             <SafeAreaView style={styles.container}>
-                <ActivityIndicator size="large" color="#185FA5" />
+                <ActivityIndicator size="large" color="#185FA5" testID="loading-indicator" />
             </SafeAreaView>
         );
     }
@@ -22,15 +22,17 @@ export const HomeScreen = () => {
     if (error) {
         return (
             <SafeAreaView style={styles.container}>
-                <Text style={styles.error}>{error}</Text>
+                <Text style={styles.error} accessibilityRole="alert">
+                    {error}
+                </Text>
             </SafeAreaView>
         );
     }
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.headingText}>NewsMarket</Text>
-            <Text>Select a domain to read articles</Text>
+            <Text style={styles.headingText} accessibilityRole="header">NewsMarket</Text>
+            <Text accessibilityRole="text">Select a domain to read articles</Text>
             <View>
                 <FlatList 
                     horizontal
@@ -41,16 +43,17 @@ export const HomeScreen = () => {
                     )}
                     showsHorizontalScrollIndicator={false}
                     style={styles.flatList}
+                    accessibilityLabel="Domain selection list"
                 />
             </View>
             {articles.length === 0 && selectedDomains.length === 0 ? (
                 <View style={styles.noArticlesContainer}>
-                    <Text style={styles.noArticlesText}>Select a domain to read articles</Text>
+                    <Text style={styles.noArticlesText} accessibilityRole="text">Select a domain to read articles</Text>
                 </View>
             ) : (
             <View style={styles.articlesContainer}>
                 <View style={styles.articlesHeader}>
-                <Text style={styles.articlesTitle}>Latest articles</Text>
+                <Text style={styles.articlesTitle} accessibilityRole="header">Latest articles</Text>
                 <SortButton 
                     sortBy={sortBy} 
                     setSortBy={setSortBy}
@@ -62,6 +65,7 @@ export const HomeScreen = () => {
                         renderItem={({ item }) => (
                             <ArticleCard source={item.source} title={item.title} description={item.description} publishedAt={item.publishedAt} content={item.content} />
                         )}
+                        accessibilityLabel="Articles list"
                     />
             </View>
             )}

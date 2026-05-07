@@ -12,7 +12,6 @@ export const SortButton: React.FC<SortButtonProps> = ({ sortBy, setSortBy }) => 
             onPress={() => setSortBy(sortBy === 'publishedAt' ? 'popularity' : 'publishedAt')}
             accessibilityRole="button"
             accessibilityLabel={`Sort by ${sortBy === 'publishedAt' ? 'popularity' : 'latest'}`}
-            accessibilityState={{ selected: false }}
         >
             <Text style={styles.text}> 
                 Sort: {sortBy === 'publishedAt' ? 'Latest' : 'Popular'} ⇅

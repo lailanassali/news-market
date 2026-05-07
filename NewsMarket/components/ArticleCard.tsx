@@ -14,14 +14,14 @@ type ArticleCardProps = {
 
 export const ArticleCard: React.FC<ArticleCardProps> = ({ source, title, description, publishedAt, content }) => {
     return (
-        <View style={styles.container}>
+        <View style={styles.container} accessibilityRole="none" accessible={true} accessibilityLabel={`${title} from ${source.name}, published ${new Date(publishedAt).toLocaleDateString()}`}>
             <View style={styles.row}>
                 <View style={styles.badge}>
                     <Text style={styles.badgeText}>{source.name}</Text>
                 </View>
                 <Text style={styles.timeText}>{new Date(publishedAt).toLocaleDateString()}</Text>
             </View>
-            <Text style={styles.title} numberOfLines={2}>{title}</Text>
+            <Text style={styles.title} numberOfLines={2} accessibilityLabel={title}>{title}</Text>
             <Text style={styles.description} numberOfLines={2}>{description ?? 'No description available'}</Text>
             <Text style={styles.content} numberOfLines={3}>{content}</Text>
         </View>
