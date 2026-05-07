@@ -1,1 +1,2 @@
-export const NEWS_API_KEY = process.env.NEWS_API_KEY || '';
+import Config from 'react-native-config';
+export const NEWS_API_KEY = Config.NEWS_API_KEY || '';
