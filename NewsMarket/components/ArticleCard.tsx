@@ -19,9 +19,16 @@ const formatDate = (dateString: string) => {
 
     const timeAgo = () => {
         if (seconds < 60) return 'Updated just now';
-        if (seconds < 3600) return `Updated ${Math.floor(seconds / 60)} minutes ago`;
-        if (seconds < 86400) return `Updated ${Math.floor(seconds / 3600)} hours ago`;
-        return `Updated ${Math.floor(seconds / 86400)} days ago`;
+        if (seconds < 3600) {
+            const minutes = Math.floor(seconds / 60);
+            return `Updated ${minutes} ${minutes === 1 ? 'minute' : 'minutes'} ago`;
+        }
+        if (seconds < 86400) {
+            const hours = Math.floor(seconds / 3600);
+            return `Updated ${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
+        }
+        const days = Math.floor(seconds / 86400);
+        return `Updated ${days} ${days === 1 ? 'day' : 'days'} ago`;
     };
 
     const formattedDate = date.toLocaleDateString('en-GB', {
