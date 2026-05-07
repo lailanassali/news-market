@@ -12,18 +12,53 @@ type ArticleCardProps = {
     content: string;
 };
 
+const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const now = new Date();
+    const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+
+    const timeAgo = () => {
+        if (seconds < 60) return 'Updated just now';
+        if (seconds < 3600) return `Updated ${Math.floor(seconds / 60)} minutes ago`;
+        if (seconds < 86400) return `Updated ${Math.floor(seconds / 3600)} hours ago`;
+        return `Updated ${Math.floor(seconds / 86400)} days ago`;
+    };
+
+    const formattedDate = date.toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+    });
+
+    return { date: formattedDate, timeAgo: timeAgo() };
+};
+
+
 export const ArticleCard: React.FC<ArticleCardProps> = ({ source, title, description, publishedAt, content }) => {
+    const { date, timeAgo } = formatDate(publishedAt);
+
     return (
-        <View style={styles.container} accessibilityRole="none" accessible={true} accessibilityLabel={`${title} from ${source.name}, published ${new Date(publishedAt).toLocaleDateString()}`}>
+        <View style={styles.container} accessibilityRole="none" accessible={true} accessibilityLabel={`${title} from ${source.name}, published ${date}`}>
             <View style={styles.row}>
                 <View style={styles.badge}>
                     <Text style={styles.badgeText}>{source.name}</Text>
                 </View>
-                <Text style={styles.timeText}>{new Date(publishedAt).toLocaleDateString()}</Text>
+                <Text style={styles.dateText} accessibilityRole="text">
+                    {date}
+                </Text>
+                <Text style={styles.timeText} accessibilityRole="text">
+                    {timeAgo}
+                </Text>
             </View>
-            <Text style={styles.title} numberOfLines={2} accessibilityLabel={title}>{title}</Text>
-            <Text style={styles.description} numberOfLines={2}>{description ?? 'No description available'}</Text>
-            <Text style={styles.content} numberOfLines={3}>{content}</Text>
+            <Text style={styles.title} numberOfLines={2} accessibilityLabel={title}>
+                {title}
+            </Text>
+            <Text style={styles.description} numberOfLines={2} accessibilityRole="text">
+                {description ?? 'No description available'}
+            </Text>
+            <Text style={styles.content} numberOfLines={3} accessibilityRole="text">
+                {content}
+            </Text>
         </View>
     );
 }
@@ -53,6 +88,11 @@ const styles = StyleSheet.create({
         fontWeight: '500',
     },
     timeText: {
+        color: '#185FA5',
+        fontSize: 11,
+        fontWeight: 'bold'
+    },
+    dateText: {
         color: '#000',
         fontSize: 11,
     },
