@@ -32,7 +32,7 @@ export const HomeScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.headingText} accessibilityRole="header">NewsMarket</Text>
-            <Text accessibilityRole="text">Select a domain to read articles</Text>
+            <Text accessibilityRole="text">Select domains to read articles</Text>
             <View>
                 <FlatList 
                     horizontal
@@ -48,7 +48,7 @@ export const HomeScreen = () => {
             </View>
             {articles.length === 0 && selectedDomains.length === 0 ? (
                 <View style={styles.noArticlesContainer}>
-                    <Text style={styles.noArticlesText} accessibilityRole="text">Select a domain to read articles</Text>
+                    <Text style={styles.noArticlesText} accessibilityRole="text">Select domains to read articles</Text>
                 </View>
             ) : (
             <View style={styles.articlesContainer}>

@@ -30,7 +30,7 @@ describe('HomeScreen', () => {
 
     it('shows empty state when no domains selected', () => {
         const { getAllByText } = renderHomeScreen();
-        expect(getAllByText('Select a domain to read articles')).toBeTruthy(); 
+        expect(getAllByText('Select domains to read articles')).toBeTruthy(); 
     });
     it('shows articles when domain is selected', async () => {
     const { getByText } = renderHomeScreen();
