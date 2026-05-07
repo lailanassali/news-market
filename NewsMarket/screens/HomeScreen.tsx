@@ -1,13 +1,31 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { ActivityIndicator, FlatList, StyleSheet, Text, View } from "react-native";
 import { DOMAINS } from "../constants";
 import { useContext } from "react";
 import { ArticleContext } from "../context/ArticleContext";
 import { DomainPill } from "../components/DomainPill";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ArticleCard } from "../components/ArticleCard";
+import { SortButton } from "../components/sortButton";
 
 export const HomeScreen = () => {
-    const { articles, selectedDomains, toggleDomain } = useContext(ArticleContext);
+    const { articles, selectedDomains, toggleDomain, loading, error, sortBy, setSortBy } = useContext(ArticleContext);
+
+    if (loading) {
+        return (
+            <SafeAreaView style={styles.container}>
+                <ActivityIndicator size="large" color="#185FA5" />
+            </SafeAreaView>
+        );
+    }
+
+    if (error) {
+        return (
+            <SafeAreaView style={styles.container}>
+                <Text style={styles.error}>{error}</Text>
+            </SafeAreaView>
+        );
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -31,7 +49,13 @@ export const HomeScreen = () => {
                 </View>
             ) : (
             <View style={styles.articlesContainer}>
-                <Text style={styles.subheadingText}>Latest articles</Text>
+                <View style={styles.articlesHeader}>
+                <Text style={styles.articlesTitle}>Latest articles</Text>
+                <SortButton 
+                    sortBy={sortBy} 
+                    setSortBy={setSortBy}
+                />
+            </View>
                     <FlatList
                         data={articles} 
                         keyExtractor={(item) => item.url} 
@@ -52,7 +76,8 @@ const styles = StyleSheet.create({
         padding: 16,
     },
     articlesContainer: {
-        flex: 1,    
+        flex: 1,   
+        marginVertical: 24
     },
     headingText: {
         fontSize: 24,
@@ -63,11 +88,15 @@ const styles = StyleSheet.create({
         marginTop: 16,
         textAlign: "center"
     },
-    subheadingText: {
+    articlesTitle: {
         fontSize: 18,
         fontWeight: 'bold',
-        marginBottom: 8,
-        marginTop: 24,
+    },
+    articlesHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 8,
     },
     noArticlesText: {
         color: '#888',
@@ -79,4 +108,9 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
     },
+    error: {
+        color: 'red',
+        textAlign: 'center',
+        marginTop: 20
+    }
 });
