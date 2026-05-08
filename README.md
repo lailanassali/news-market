@@ -219,6 +219,7 @@ All interactive components include `accessibilityRole`, `accessibilityLabel` and
 
 ## Next Steps
 
+- **Custom App Icon** - Custom app icon added for Android and iOS for a seamless finish.
 - **Read More button** - It would be useful to add a 'Read More' button on each Article Card component so that the user can be re-directed to the browser via the source URL to read more information about the article. This will also provide a clean UX on the cards.
 - **Add Domain Logo/Icons** - A nice feature would be to add article logos to Domain Pill Component for a cleaner, professional look.
 - **Pagination & Infinite Scroll** - To display more than 10 articles for a seamless UX List experience.
