@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Welcome to the News Market App
 
 ## Overview
@@ -232,6 +231,3 @@ All interactive components include `accessibilityRole`, `accessibilityLabel` and
 ## Troubleshooting
 
 If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-=======
-# news-market
->>>>>>> 6c61de5678061ef307124345305ade3a150e268e
