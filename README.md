@@ -204,7 +204,7 @@ All interactive components include `accessibilityRole`, `accessibilityLabel` and
 
 ---
 
-## Assumptions and Trade-offs
+**Assumptions and Trade-offs**
 
 - **NewsAPI Free Tier** - The free tier for the NewsAPI is limited to 100 requests per day. If for any reason, there are no articles showing, it may have reached the daily limit. Please try again the following day. 
 - **Type Definitions** - The Article Type Definition is nullable for `source.id` and `description` after doing some research on the News API website and testing on Postman. Using `string | null` type to handle nullable API responses. 
@@ -213,7 +213,7 @@ All interactive components include `accessibilityRole`, `accessibilityLabel` and
 - **Truncation** - The description and content values have a lot of information so truncation to 3 lines helps for cleaner UX.
 - **Article Limit** - Articles are limited to 10 per request using the pageSize param as per brief requirement. 
 
-## Known Limitations
+**Known Limitations**
 
 - **Test Warnings** - act() warnings are a known compatibility issue between `React 19 and React Testing Library`. All tests pass correctly.
 
